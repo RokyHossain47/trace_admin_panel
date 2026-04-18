@@ -50,7 +50,7 @@ if ($currUser){
                     $query = new ParseQuery("Gifts");
                     $categoriesToExclude = ["avatar_frame", "party_theme", "entrance_effect", "promotional_image"];
                     $query->notContainedIn("categories", $categoriesToExclude);
-                    $matchCounter = $query->count(true);
+                    $matchCounter = 0; try { $matchCounter = $query->count(); } catch (Exception $e) { $matchCounter = '?'; }
 
                     echo ' <h2 class="card-title">'.$matchCounter.' Gift in total</h2> ';
 

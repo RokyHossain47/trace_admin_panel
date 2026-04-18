@@ -48,7 +48,7 @@ if ($currUser){
                     <?php
 
                     $query = new ParseQuery("Streaming");
-                    $streamCounter = $query->count(true);
+                    $streamCounter = 0; try { $streamCounter = $query->count(); } catch (Exception $e) { $streamCounter = '?'; }
 
                     echo ' <h2 class="card-title">'.$streamCounter.' Streams in total</h2> ';
 

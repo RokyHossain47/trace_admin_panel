@@ -48,7 +48,7 @@ if ($currUser){
                     <?php
 
                     $query = new ParseQuery("Encounters");
-                    $matchCounter = $query->count(true);
+                    $matchCounter = 0; try { $matchCounter = $query->count(); } catch (Exception $e) { $matchCounter = '?'; }
 
                     echo ' <h2 class="card-title">'.$matchCounter.' Encouters in total</h2> ';
 

@@ -47,8 +47,13 @@ if ($currUser){
 
                     <?php
 
-                    $query = new ParseQuery("Posts");
-                    $matchCounter = $query->count(true);
+                    $matchCounter = 0;
+                    try {
+                        $query = new ParseQuery("Posts");
+                        $matchCounter = $query->count();
+                    } catch (Exception $e) {
+                        $matchCounter = '?';
+                    }
 
                     echo ' <h2 class="card-title">'.$matchCounter.' Posts in total</h2> ';
 

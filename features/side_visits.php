@@ -49,7 +49,7 @@ if ($currUser){
 
                     $query = new ParseQuery('Connections');
                     $query->equalTo('type', 'VISITOR');
-                    $matchCounter = $query->count(true);
+                    $matchCounter = 0; try { $matchCounter = $query->count(); } catch (Exception $e) { $matchCounter = '?'; }
 
                     echo ' <h2 class="card-title">'.$matchCounter.' Visitors in total</h2> ';
 

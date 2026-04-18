@@ -47,9 +47,14 @@ if ($currUser){
 
                     <?php
 
-                    $query = new ParseQuery('Message');
-                    $query->doesNotExist('call');
-                    $messagesCounter = $query->count(true);
+                    $messagesCounter = 0;
+                    try {
+                        $query = new ParseQuery('Message');
+                        $query->doesNotExist('call');
+                        $messagesCounter = $query->count(true);
+                    } catch (Exception $e) {
+                        $messagesCounter = '?';
+                    }
 
                     echo ' <h2 class="card-title">'.$messagesCounter.' Messages in total</h2> ';
 
@@ -83,7 +88,8 @@ if ($currUser){
                                     $query->descending('createdAt');
                                     $query->includeKey("Author");
                                     $query->includeKey("Receiver");
-                                    $catArray = $query->find(false);
+                                    $query->limit(100);
+                                    $catArray = $query->find();
 
                                     foreach ($catArray as $iValue) {
                                         // Get Parse Object
@@ -138,7 +144,11 @@ if ($currUser){
                                 ';
                                     }
                                     // error in query
-                                } catch (ParseException $e){ echo $e->getMessage(); }
+                                } catch (ParseException $e){ 
+                                    echo '<tr><td colspan="7" class="text-center text-danger">Error loading messages: ' . $e->getMessage() . '</td></tr>';
+                                } catch (Exception $e) {
+                                    echo '<tr><td colspan="7" class="text-center text-warning">No messages available</td></tr>';
+                                }
                                 ?>
 
                                 </tbody>

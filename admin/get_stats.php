@@ -17,49 +17,50 @@ try {
         case 'registered_today':
             $query = new ParseQuery('_User');
             $query->greaterThanOrEqualToRelativeTime('createdAt', '24 hrs ago');
-            $result['data'] = $query->count(true);
+            $result['data'] = $query->count();
             $result['success'] = true;
             break;
             
         case 'total_users':
             $query = new ParseQuery('_User');
-            $result['data'] = $query->count(true);
+            $result['data'] = $query->count();
             $result['success'] = true;
             break;
             
         case 'messages':
             $query = new ParseQuery('Message');
-            $result['data'] = $query->count(true);
+            $query->doesNotExist('call');
+            $result['data'] = $query->count();
             $result['success'] = true;
             break;
             
         case 'videos':
             $query = new ParseQuery('Video');
-            $result['data'] = $query->count(true);
+            $result['data'] = $query->count();
             $result['success'] = true;
             break;
             
         case 'streamings':
             $query = new ParseQuery('Streaming');
-            $result['data'] = $query->count(true);
+            $result['data'] = $query->count();
             $result['success'] = true;
             break;
             
         case 'challenges':
             $query = new ParseQuery('Challenge');
-            $result['data'] = $query->count(true);
+            $result['data'] = $query->count();
             $result['success'] = true;
             break;
             
         case 'categories':
             $query = new ParseQuery('Category');
-            $result['data'] = $query->count(true);
+            $result['data'] = $query->count();
             $result['success'] = true;
             break;
             
         case 'stories':
             $query = new ParseQuery('Stories');
-            $result['data'] = $query->count(true);
+            $result['data'] = $query->count();
             $result['success'] = true;
             break;
             
@@ -67,9 +68,11 @@ try {
             $result['error'] = 'Invalid action';
     }
 } catch (ParseException $e) {
-    $result['error'] = $e->getMessage();
+    $result['error'] = 'Query error: ' . $e->getMessage();
+    $result['success'] = false;
 } catch (Exception $e) {
-    $result['error'] = $e->getMessage();
+    $result['error'] = 'Error: ' . $e->getMessage();
+    $result['success'] = false;
 }
 
 echo json_encode($result);

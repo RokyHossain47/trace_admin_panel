@@ -48,7 +48,7 @@ if ($currUser){
                     <?php
 
                     $query = new ParseQuery("Posts");
-                    $streamCounter = $query->count(true);
+                    $streamCounter = 0; try { $streamCounter = $query->count(); } catch (Exception $e) { $streamCounter = '?'; }
 
                     echo ' <h2 class="card-title">'.$streamCounter.' Videos in total</h2> ';
 

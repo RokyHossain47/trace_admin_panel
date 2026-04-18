@@ -49,7 +49,7 @@ if ($currUser){
 
                     $query = new ParseQuery("Gifts");
                     $query->equalTo("categories", "entrance_effect");
-                    $matchCounter = $query->count(true);
+                    $matchCounter = 0; try { $matchCounter = $query->count(); } catch (Exception $e) { $matchCounter = '?'; }
 
                     echo ' <h2 class="card-title">'.$matchCounter.' Entrance Effect in total</h2> ';
 

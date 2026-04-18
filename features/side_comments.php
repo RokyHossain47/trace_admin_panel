@@ -8,7 +8,9 @@ use Parse\ParseQuery;
 use Parse\ParseUser;
 
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $currUser = ParseUser::getCurrentUser();
 if ($currUser){
@@ -47,8 +49,13 @@ if ($currUser){
 
                     <?php
 
-                    $query = new ParseQuery("VideoComments");
-                    $matchCounter = $query->count(true);
+                    $matchCounter = 0;
+                    try {
+                        $query = new ParseQuery("VideoComments");
+                        $matchCounter = $query->count();
+                    } catch (Exception $e) {
+                        $matchCounter = '?';
+                    }
 
                     echo ' <h2 class="card-title">'.$matchCounter.' Comments in total</h2> ';
 

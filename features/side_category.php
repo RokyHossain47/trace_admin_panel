@@ -49,7 +49,7 @@ if ($currUser){
                     <?php
 
                     $query = new ParseQuery("Category");
-                    $messagesCounter = $query->count(true);
+                    $messagesCounter = 0; try { $messagesCounter = $query->count(); } catch (Exception $e) { $messagesCounter = '?'; }
 
                     echo ' <h2 class="card-title">'.$messagesCounter.' Categories in total</h2> ';
 

@@ -49,7 +49,7 @@ if ($currUser){
 
                     $query = new ParseQuery('Connections');
                     $query->equalTo('type', 'FAVORITE');
-                    $matchCounter = $query->count(true);
+                    $matchCounter = 0; try { $matchCounter = $query->count(); } catch (Exception $e) { $matchCounter = '?'; }
 
                     echo ' <h2 class="card-title">'.$matchCounter.' Favorites in total</h2> ';
 

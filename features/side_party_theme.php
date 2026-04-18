@@ -49,7 +49,7 @@ if ($currUser){
 
                     $query = new ParseQuery("Gifts");
                     $query->equalTo("categories", "party_theme");
-                    $matchCounter = $query->count(true);
+                    $matchCounter = 0; try { $matchCounter = $query->count(); } catch (Exception $e) { $matchCounter = '?'; }
 
                     echo ' <h2 class="card-title">'.$matchCounter.' Party Themes</h2> ';
 

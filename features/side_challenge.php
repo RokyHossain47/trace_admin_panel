@@ -49,7 +49,7 @@ if ($currUser){
 
                     $query = new ParseQuery("Challenge");
                     $query->notEqualTo("Mode","LIV");
-                    $streamCounter = $query->count(true);
+                    $streamCounter = 0; try { $streamCounter = $query->count(); } catch (Exception $e) { $streamCounter = '?'; }
 
                     echo ' <h2 class="card-title">'.$streamCounter.' Challenges in total</h2> ';
 

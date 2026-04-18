@@ -49,7 +49,7 @@ if ($currUser){
 
                     $query = new ParseQuery("Gifts");
                     $query->equalTo("categories", "avatar_frame");
-                    $matchCounter = $query->count(true);
+                    $matchCounter = 0; try { $matchCounter = $query->count(); } catch (Exception $e) { $matchCounter = '?'; }
 
                     echo ' <h2 class="card-title">'.$matchCounter.' Avatar Frames in total</h2> ';
 
