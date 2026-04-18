@@ -26,208 +26,119 @@ use Parse\ParseUser;
 
 
         <div class="row">
+            <!-- Registered Today -->
             <div class="col-md-3">
                 <div class="card p-30">
                     <div class="media">
-                        <?php
-
-                        try {
-                        $query = new ParseQuery('_User');
-                        $query->greaterThanOrEqualToRelativeTime('createdAt', '24 hrs ago');
-                        $registedToday = $query->count();
-
-
-                            echo '<div class="media-body media-text-left">
-                            <h2>'.$registedToday.'</h2>
+                        <div class="media-body media-text-left">
+                            <h2 id="registered_today" style="min-height: 35px;">⏳</h2>
                             <p class="m-b-0">Registered today</p>
-                        </div>';
-                            // error in query
-                        } catch (ParseException $e){ echo $e->getMessage(); } catch (Exception $e) {
-                        }
-                        ?>
+                        </div>
                         <div class="media-left meida media-middle">
                             <span><i class="fa fa-user-plus f-s-60 <?php echo $default_icon_color;?>"></i></span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Total Users -->
             <div class="col-md-3">
                 <div class="card p-30">
                     <div class="media">
-                        <?php
-
-                        $query = new ParseQuery("_User");
-                        $count = $query->count();
-
-                        echo '
-                        
                         <div class="media-body media-text-left">
-                            <h2>'.$count.'</h2>
+                            <h2 id="total_users" style="min-height: 35px;">⏳</h2>
                             <p class="m-b-0">Total Users</p>
                         </div>
-                        
-                        ';
-
-                        ?>
                         <div class="media-left meida media-middle">
                             <span><i class="fa fa-users f-s-60 <?php echo $default_icon_color;?>"></i></span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Messages -->
             <div class="col-md-3">
                 <div class="card p-30">
                     <div class="media">
-                        <?php
-
-                        $query = new ParseQuery("Message");
-                        $count = $query->count();
-
-                        echo '
-                        
                         <div class="media-body media-text-left">
-                            <h2>'.$count.'</h2>
+                            <h2 id="messages" style="min-height: 35px;">⏳</h2>
                             <p class="m-b-0">Messages</p>
                         </div>
-                        
-                        ';
-
-                        ?>
                         <div class="media-left meida media-middle">
                             <span><i class="fa fa-comments-o f-s-60 <?php echo $default_icon_color;?>"></i></span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Videos -->
             <div class="col-md-3">
                 <div class="card p-30">
                     <div class="media">
-                        <?php
-
-                        $query = new ParseQuery("Video");
-                        //$query->equalTo("tipo", "aluno");
-                        $count = $query->count();
-                        // The count request succeeded. Show the count
-                        //echo "Sean has played " . $count . " games";
-
-                        echo '
-                        
                         <div class="media-body media-text-left">
-                            <h2>'.$count.'</h2>
+                            <h2 id="videos" style="min-height: 35px;">⏳</h2>
                             <p class="m-b-0">Videos</p>
                         </div>
-                        
-                        ';
-
-                        ?>
                         <div class="media-left meida media-middle">
                             <span><i class="fa fa-play f-s-60 <?php echo $default_icon_color;?>"></i></span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Streamings -->
             <div class="col-md-3">
                 <div class="card p-30">
                     <div class="media">
-                        <?php
-
-                        $query = new ParseQuery("Streaming");
-                        //$query->equalTo("tipo", "aluno");
-                        $count = $query->count();
-                        // The count request succeeded. Show the count
-                        //echo "Sean has played " . $count . " games";
-
-                        echo '
-                        
                         <div class="media-body media-text-left">
-                            <h2>'.$count.'</h2>
+                            <h2 id="streamings" style="min-height: 35px;">⏳</h2>
                             <p class="m-b-0">Streamings</p>
                         </div>
-                        
-                        ';
-
-                        ?>
                         <div class="media-left meida media-middle">
                             <span><i class="fa fa-video-camera f-s-60 <?php echo $default_icon_color;?>"></i></span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Challenges -->
             <div class="col-md-3">
                 <div class="card p-30">
                     <div class="media">
-                        <?php
-
-                        $query = new ParseQuery("Challenge");
-                        //$query->equalTo("tipo", "aluno");
-                        $count = $query->count();
-                        // The count request succeeded. Show the count
-                        //echo "Sean has played " . $count . " games";
-
-                        echo '
-                        
                         <div class="media-body media-text-left">
-                            <h2>'.$count.'</h2>
+                            <h2 id="challenges" style="min-height: 35px;">⏳</h2>
                             <p class="m-b-0">All challenges</p>
                         </div>
-                        
-                        ';
-
-                        ?>
                         <div class="media-left meida media-middle">
                             <span><i class="fa fa-hashtag f-s-60 <?php echo $default_icon_color;?>"></i></span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Categories -->
             <div class="col-md-3">
                 <div class="card p-30">
                     <div class="media">
-                        <?php
-
-                        $query = new ParseQuery("Category");
-                        //$query->equalTo("tipo", "aluno");
-                        $count = $query->count();
-                        // The count request succeeded. Show the count
-                        //echo "Sean has played " . $count . " games";
-
-                        echo '
-                        
                         <div class="media-body media-text-left">
-                            <h2>'.$count.'</h2>
+                            <h2 id="categories" style="min-height: 35px;">⏳</h2>
                             <p class="m-b-0">Categories</p>
                         </div>
-                        
-                        ';
-
-                        ?>
                         <div class="media-left meida media-middle">
                             <span><i class="fa fa-hashtag f-s-60 <?php echo $default_icon_color;?>"></i></span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Stories -->
             <div class="col-md-3">
                 <div class="card p-30">
                     <div class="media">
-                        <?php
-
-                        $query = new ParseQuery("Stories");
-                        #$query->greaterThan("expiration_date", date("Y-m-d h:i:sa"));
-                        $count = $query->count();
-                        // The count request succeeded. Show the count
-                        //echo "Sean has played " . $count . " games";
-
-                        echo '
-                        
                         <div class="media-body media-text-left">
-                            <h2>'.$count.'</h2>
+                            <h2 id="stories" style="min-height: 35px;">⏳</h2>
                             <p class="m-b-0">Stories</p>
                         </div>
-                        
-                        ';
-
-                        ?>
                         <div class="media-left meida media-middle">
                             <span><i class="fa fa-history f-s-60 <?php echo $default_icon_color;?>"></i></span>
                         </div>
@@ -235,6 +146,41 @@ use Parse\ParseUser;
                 </div>
             </div>
         </div>
+
+        <script>
+            // Load stats asynchronously with timeout
+            function loadStat(action, elementId) {
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
+                fetch('get_stats.php?action=' + action, { signal: controller.signal })
+                    .then(response => response.json())
+                    .then(data => {
+                        clearTimeout(timeout);
+                        if (data.success) {
+                            document.getElementById(elementId).textContent = data.data;
+                        } else {
+                            document.getElementById(elementId).textContent = '❌ Error';
+                        }
+                    })
+                    .catch(error => {
+                        clearTimeout(timeout);
+                        document.getElementById(elementId).textContent = '⚠️ N/A';
+                    });
+            }
+
+            // Load all stats
+            window.addEventListener('load', function() {
+                loadStat('registered_today', 'registered_today');
+                loadStat('total_users', 'total_users');
+                loadStat('messages', 'messages');
+                loadStat('videos', 'videos');
+                loadStat('streamings', 'streamings');
+                loadStat('challenges', 'challenges');
+                loadStat('categories', 'categories');
+                loadStat('stories', 'stories');
+            });
+        </script>
 
         <div class="row bg-white m-l-0 m-r-0 box-shadow ">
 

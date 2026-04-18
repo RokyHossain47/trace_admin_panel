@@ -7,10 +7,18 @@ use Parse\ParseException;
 use Parse\ParseQuery;
 use Parse\ParseUser;
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $currUser = ParseUser::getCurrentUser();
 $cuObjectID = $currUser->getObjectId();
+
+// Initialize variables to prevent undefined warnings
+$badge = '';
+$content = '<li><a href="#" class="p-t-25 p-b-25 p-r-15 p-l-15" style="text-align:center;"> No notifications for now</a></li>';
+$avatarURL = "../assets/dashboard/images/avatar_blank.png";
+$name = 'Admin';
 
 // Get avatar
 
@@ -37,19 +45,15 @@ try {
         $badge = '';
     }
     
-    if (sizeof($currUser->get("photos") > 0)) {
-
-        $photos = $currUser->get('avatar');
+    // Get user avatar and name
+    $photos = $currUser->get("avatar");
+    
+    if ($photos !== null) {
         $name = $currUser->get('name');
-
-        if ($photos !== null){
-            $avatarURL = $photos->getURL();
-        } else {
-            $avatarURL = "../assets/dashboard/images/avatar_blank.png";
-        }
-
+        $avatarURL = $photos->getURL();
     } else {
         $avatarURL = "../assets/dashboard/images/avatar_blank.png";
+        $name = 'Admin';
     }
 } catch (Exception $e) {
 }

@@ -15,7 +15,10 @@ use Parse\ParseCloud;
 use Parse\ParseClient;
 use Parse\ParseSessionStorage;
 use Parse\ParseGeoPoint;
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $currUser = ParseUser::getCurrentUser();
 if (!$currUser) {
