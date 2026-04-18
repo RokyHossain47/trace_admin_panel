@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user->setEmail($email);
             $user->set('role', 'admin');
             
-            $user->save();
+            $user->signUp();
             
             $message = '✅ Admin user created successfully!<br>';
             $message .= '<strong>Login Details:</strong><br>';
