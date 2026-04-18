@@ -1,7 +1,7 @@
 <?php
 /**
  * Admin User Setup Script
- * এই স্ক্রিপ্ট একটি admin user তৈরি করে Parse database এ
+ * This script creates an admin user in the Parse database
  */
 
 require 'vendor/autoload.php';
@@ -20,9 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = trim($_POST['password'] ?? '');
     
     if (!$email || !$username || !$password) {
-        $error = 'সব ফিল্ড পূরণ করুন!';
+        $error = 'Please fill all fields!';
     } else if (strlen($password) < 6) {
-        $error = 'পাসওয়ার্ড কমপক্ষে 6 ক্যারেক্টার হতে হবে!';
+        $error = 'Password must be at least 6 characters!';
     } else {
         try {
             // Create new admin user
@@ -34,12 +34,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             $user->save();
             
-            $message = '✅ Admin user সফলভাবে তৈরি হয়েছে!<br>';
+            $message = '✅ Admin user created successfully!<br>';
             $message .= '<strong>Login Details:</strong><br>';
             $message .= 'Username: ' . htmlspecialchars($username) . '<br>';
             $message .= 'Email: ' . htmlspecialchars($email) . '<br>';
             $message .= 'Password: ' . htmlspecialchars($password) . '<br><br>';
-            $message .= '<a href="auth/login.php" style="padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">এখন লগইন করুন →</a>';
+            $message .= '<a href="auth/login.php" style="padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">Login Now →</a>';
             
         } catch (ParseException $e) {
             $error = 'Error: ' . $e->getMessage();
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Setup - Trace Dashboard</title>
+    <title>Admin Setup - Trace Admin Panel</title>
     <style>
         * {
             margin: 0;
@@ -174,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="container">
         <h1>🔐 Admin Setup</h1>
-        <p class="subtitle">প্রথম admin user তৈরি করুন এবং dashboard এ লগইন করুন</p>
+        <p class="subtitle">Create your first admin user and login to the dashboard</p>
         
         <?php if ($message): ?>
             <div class="alert alert-success">
@@ -202,16 +202,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <div class="form-group">
                 <label for="password">🔑 Password</label>
-                <input type="password" id="password" name="password" placeholder="কমপক্ষে 6 ক্যারেক্টার" required>
+                <input type="password" id="password" name="password" placeholder="Minimum 6 characters" required>
             </div>
             
-            <button type="submit">Admin User তৈরি করুন</button>
+            <button type="submit">Create Admin User</button>
         </form>
         <?php endif; ?>
         
         <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e0e0e0; text-align: center; font-size: 13px; color: #666;">
-            <p>✅ Back4app credentials সঠিকভাবে সেটআপ হয়েছে?</p>
-            <p>হ্যাঁ হলে উপরে form ফিল করুন এবং submit করুন।</p>
+            <p>✅ Back4app credentials set up correctly?</p>
+            <p>If yes, fill the form above and submit.</p>
         </div>
     </div>
 </body>
