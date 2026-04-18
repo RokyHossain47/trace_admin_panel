@@ -209,15 +209,14 @@ class ParseUser extends ParseObject
      *
      * @return ParseUser
      */
-    public static function logInWithTwitter(
-        $id,
-        $screen_name,
-        $consumer_key,
-        $consumer_secret = null,
-        //@codingStandardsIgnoreLine
-        $auth_token,
-        $auth_token_secret
-    ) {
+   public static function logInWithTwitter(
+    $id,
+    $screen_name,
+    $consumer_key,
+    $auth_token,
+    $auth_token_secret,
+    $consumer_secret = null
+) {
 
         if (!$id) {
             throw new ParseException(
