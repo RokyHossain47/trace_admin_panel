@@ -1,20 +1,20 @@
-.idea
-composer.lock
-vendor
+# .idea
+# composer.lock
+# vendor
 
-# npm based parse-server-test
-node_modules
-logs
-test_logs
+# # npm based parse-server-test
+# node_modules
+# logs
+# test_logs
 
-# ignore test results
-phpunit-test-results
-.phpunit.result.cache
+# # ignore test results
+# phpunit-test-results
+# .phpunit.result.cache
 
-*.log
+# *.log
 
-coverage.xml
+# coverage.xml
 
-# ignore phpdoc
-output/
+# # ignore phpdoc
+# output/
 
